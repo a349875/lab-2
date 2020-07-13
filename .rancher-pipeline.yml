@@ -1,0 +1,30 @@
+stages:
+- name: sh
+  steps:
+  - runScriptConfig:
+      image: nginx
+      shellScript: |-
+        FROM nginx
+        MAINTAINER a349875@gmail.com
+        COPY ./html /usr/share/nginx/html
+        LABEL name="Nginx Web Server" \
+        build-date="2019-7-12"
+        VOLUME ["/usr/share/nginx/html"]
+        EXPOSE 80
+  - runScriptConfig:
+      image: python:latest
+      shellScript: echo "test"
+- name: repo
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: a349875/app:v1
+      pushRemote: true
+      registry: index.docker.io
+- name: deploy
+  steps:
+  - applyYamlConfig:
+      path: ./nginx-pod.yaml
+timeout: 60
+notification: {}
