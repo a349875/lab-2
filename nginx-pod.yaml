@@ -14,21 +14,21 @@ spec:
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: my-nginx-v2
+  name: my-nginx-v3
 spec:
   replicas: 1
   selector:
     app: nginx
-    deployment: v2
+    deployment: v3
   template:
     metadata:
       labels:
         app: nginx
-        deployment: v2
+        deployment: v3
     spec:
       containers:
       - name: nginx
-        image: a349875/k8slab01:v2
+        image: a349875/k8slab01:v3
         args: ["nginx", "-T"]
         ports:
         - containerPort: 80
