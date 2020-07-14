@@ -2,7 +2,7 @@ stages:
 - name: repo
   steps:
   - publishImageConfig:
-      dockerfilePath: ./Dockerfile
+      dockerfilePath: ./dockerfile
       buildContext: .
       tag: a349875/app:v1
       pushRemote: true
