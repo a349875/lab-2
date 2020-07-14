@@ -4,7 +4,7 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./dockerfile
       buildContext: .
-      tag: a349875/app:v1
+      tag: a349875/app:v3
       pushRemote: true
       registry: index.docker.io
 - name: deploy
