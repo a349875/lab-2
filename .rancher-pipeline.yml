@@ -5,7 +5,6 @@ stages:
       dockerfilePath: ./dockerfile
       buildContext: .
       tag: a349875/k8slab01:v1
-      pushRemote: true
       registry: index.docker.io
 - name: deploy
   steps:
