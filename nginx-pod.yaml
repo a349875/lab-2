@@ -20,13 +20,13 @@ spec:
   selector:
     matchLabels:
       app: nginx-deployment
-    template:
-      metadata:
-        labels:
-          app: nginx-deployment
-      spec:
-        containers:
-        - name: nginx-container
-          image: a349875/k8slab01:v1
-          ports:
-          - containerPort: 80
+  template:
+    metadata:
+      labels:
+        app: nginx-deployment
+    spec:
+      containers:
+      - name: nginx-container
+        image: a349875/k8slab01:v1
+        ports:
+        - containerPort: 80
