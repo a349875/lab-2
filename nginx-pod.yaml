@@ -20,6 +20,12 @@ spec:
   selector:
     matchLabels:
       app: nginx-deployment
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
   template:
     metadata:
       labels:
@@ -27,6 +33,6 @@ spec:
     spec:
       containers:
       - name: nginx-container
-        image: a349875/k8slab01:v1
+        image: a349875/k8slab01:v2
         ports:
         - containerPort: 80
