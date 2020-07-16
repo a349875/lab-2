@@ -4,12 +4,12 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./dockerfile
       buildContext: .
-      tag: a349875/app:v1
+      tag: a349875/k8slab01:v3
       pushRemote: true
       registry: index.docker.io
 - name: deploy
   steps:
   - applyYamlConfig:
-      path: ./nginx-pod.yaml
+      path: ./nginx-pod-update.yaml
 timeout: 60
 notification: {}
