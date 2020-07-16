@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: nginx-container
-        image: a349875/k8slab01:v3
+        image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
         ports:
         - containerPort: 80
