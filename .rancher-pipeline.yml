@@ -4,7 +4,7 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./dockerfile
       buildContext: .
-      tag: a349875/k8slab01:v3
+      tag: a349875/k8slab01:${CICD_EXECUTION_SEQUENCE}
       pushRemote: true
       registry: index.docker.io
 - name: deploy
