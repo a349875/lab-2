@@ -20,6 +20,6 @@ spec:
     spec:
       containers:
       - name: nginx-container
-        image: a349875/k8slab01:v1
+        image: a349875/k8slab01:v3
         ports:
         - containerPort: 80
