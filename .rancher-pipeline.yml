@@ -10,7 +10,7 @@ stages:
 - name: deploy
   steps:
   - runScriptConfig:
-      image: a349875/k8slab01:${CICD_EXECUTION_SEQUENCE}
+      image: nginx
       shellScript: |2-
           #!/bin/bash
           if [ `curl -s -I http://18.182.21.175:30717 | grep HTTP | awk {'print $2'}` = 404 ]
