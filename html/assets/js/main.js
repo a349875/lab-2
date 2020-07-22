@@ -1,5 +1,5 @@
 /*
-	Broadcast by TEMPLATED
+	Radius by TEMPLATED
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 */
@@ -17,7 +17,9 @@
 	$(function() {
 
 		var	$window = $(window),
-			$body = $('body');
+			$body = $('body'),
+			$header = $('#header'),
+			$footer = $('#footer');
 
 		// Disable animations/transitions until the page has loaded.
 			$body.addClass('is-loading');
@@ -39,108 +41,39 @@
 				);
 			});
 
-		// Menu.
-			$('#menu')
-				.append('<a href="#menu" class="close"></a>')
-				.appendTo($body)
-				.panel({
-					delay: 500,
-					hideOnClick: true,
-					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
-					side: 'right'
-				});
-
-		// Banner.
-			var $banner = $('#banner');
-
-			if ($banner.length > 0) {
-
-				// IE fix.
-					if (skel.vars.IEVersion < 12) {
-
-						$window.on('resize', function() {
-
-							var wh = $window.height() * 0.60,
-								bh = $banner.height();
-
-							$banner.css('height', 'auto');
-
-							window.setTimeout(function() {
-
-								if (bh < wh)
-									$banner.css('height', wh + 'px');
-
-							}, 0);
-
-						});
-
-						$window.on('load', function() {
-							$window.triggerHandler('resize');
-						});
-
-					}
-
-				// Video check.
-					var video = $banner.data('video');
-
-					if (video)
-						$window.on('load.banner', function() {
-
-							// Disable banner load event (so it doesn't fire again).
-								$window.off('load.banner');
-
-							// Append video if supported.
-								if (!skel.vars.mobile
-								&&	!skel.breakpoint('large').active
-								&&	skel.vars.IEVersion > 9)
-									$banner.append('<video autoplay loop><source src="' + video + '.mp4" type="video/mp4" /><source src="' + video + '.webm" type="video/webm" /></video>');
-
-						});
-
-				// More button.
-					$banner.find('.more')
-						.addClass('scrolly');
-
-			}
-
-		// Tabbed Boxes
-
-			$('.flex-tabs').each( function() {
+		// Header.
+			$header.each( function() {
 
 				var t 		= jQuery(this),
-					tab 	= t.find('.tab-list li a'),
-					tabs 	= t.find('.tab');
+					button 	= t.find('.button');
 
-				tab.click(function(e) {
+				button.click(function(e) {
 
-					var x = jQuery(this),
-						y = x.data('tab');
+					t.toggleClass('hide');
 
-					// Set Classes on Tabs
-						tab.removeClass('active');
-						x.addClass('active');
-
-					// Show/Hide Tab Content
-						tabs.removeClass('active');
-						t.find('.' + y).addClass('active');
-
-					e.preventDefault();
+					if ( t.hasClass('preview') ) {
+						return true;
+					} else {
+						e.preventDefault();
+					}
 
 				});
 
 			});
 
-		// Scrolly.
-			if ( $( ".scrolly" ).length ) {
+		// Footer.
+			$footer.each( function() {
 
-				var $height = $('#header').height();
+				var t 		= jQuery(this),
+					inner 	= t.find('.inner'),
+					button 	= t.find('.info');
 
-				$('.scrolly').scrolly({
-					offset: $height
+				button.click(function(e) {
+					t.toggleClass('show');
+					e.preventDefault();
 				});
-			}
+
+			});
 
 	});
 
