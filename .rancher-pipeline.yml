@@ -7,7 +7,19 @@ stages:
       tag: a349875/k8slab01:${CICD_EXECUTION_SEQUENCE}
       pushRemote: true
       registry: index.docker.io
-- name: deploy
+- name: test
+  steps:
+  - runScriptConfig:
+      image: nginx
+      shellScript: |2-
+          #!/bin/bash
+          if [ `curl -s -I http://3.112.95.109:30717/ | grep HTTP | awk {'print $2'}`=200 ]
+          then
+          exit 0
+          else
+          exit 1
+          fi
+- name: depoly
   steps:
   - applyYamlConfig:
       path: ./nginx-pod-update.yaml
